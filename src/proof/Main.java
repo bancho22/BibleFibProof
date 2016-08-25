@@ -22,16 +22,14 @@ public class Main {
     
     public static void main(String[] args) {
         ArrayList<Integer> numericValues = convertTextFileIntoNumericValues();
-//        ArrayList<Integer> fibSeq = generateFibSeq(LIMIT);
-        ArrayList<Integer> fibSeq = new ArrayList<>();
-        fibSeq.add(2);
-        fibSeq.add(13);
-        fibSeq.add(21);
+        ArrayList<Integer> fibSeq = generateFibSeq(LIMIT);
         Collections.reverse(fibSeq);
+        
+        System.out.println("Number of letters: " + numericValues.size());
                 
         ArrayList<Match> matches = performCalculations(numericValues, fibSeq);
         
-        System.out.println(matches.size());
+        System.out.println("Matches: " + matches.size());
     }
     
     
@@ -52,9 +50,6 @@ public class Main {
                 if (strNum.equals("")) {
                     continue;
                 }
-//                if(strNum.equals("14215-518")){
-//                    System.out.println(i);
-//                }
                 int num = Integer.parseInt(strNum);
                 
                 boolean matchPossible;
