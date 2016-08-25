@@ -13,10 +13,7 @@ public class Test {
     
     public static void main(String[] args) {
         
-        String a = "12";
-        String b = "13";
-        a.concat(b);
-        System.out.println(a);
+        System.out.println(Character.getNumericValue('4'));
         
     }
     

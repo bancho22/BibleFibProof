@@ -22,9 +22,13 @@ public class Main {
     
     public static void main(String[] args) {
         ArrayList<Integer> numericValues = convertTextFileIntoNumericValues();
-        ArrayList<Integer> fibSeq = generateFibSeq(LIMIT);
+//        ArrayList<Integer> fibSeq = generateFibSeq(LIMIT);
+        ArrayList<Integer> fibSeq = new ArrayList<>();
+        fibSeq.add(2);
+        fibSeq.add(13);
+        fibSeq.add(21);
         Collections.reverse(fibSeq);
-        
+                
         ArrayList<Match> matches = performCalculations(numericValues, fibSeq);
         
         System.out.println(matches.size());
@@ -45,8 +49,14 @@ public class Main {
                         strNum = strNum.concat(strVal);
                     }
                 }
+                if (strNum.equals("")) {
+                    continue;
+                }
+//                if(strNum.equals("14215-518")){
+//                    System.out.println(i);
+//                }
                 int num = Integer.parseInt(strNum);
-
+                
                 boolean matchPossible;
                 ArrayList<Integer> numsInSeq = null;
                 if(fibSeq.contains(num)){
@@ -61,13 +71,17 @@ public class Main {
                 while(matchPossible){
                     //test next ones
                     strNum = "";
-                    for (int j = numsInSeq.size() * 5; j < numsInSeq.size() * 5 + numOfLettersFibsMadeOf; j++) {
+                    for (int j = numsInSeq.size() * numOfLettersFibsMadeOf; j < numsInSeq.size() * numOfLettersFibsMadeOf + numOfLettersFibsMadeOf; j++) {
                         int index = i+j;
                         if(index >= letters.size() == false){ //avoiding IndexOutOfBoundsException
                             int val = letters.get(i+j);
                             String strVal = Integer.toString(val);
                             strNum = strNum.concat(strVal);
                         }
+                    }
+                    if (strNum.equals("")) {
+                        matchPossible = false;
+                        continue;
                     }
                     num = Integer.parseInt(strNum);
                     if(fibSeq.contains(num)){
@@ -121,7 +135,7 @@ public class Main {
 
                 char c = (char) content;
                 int numVal = Character.getNumericValue(c);
-                if(numVal != -1){
+                if(numVal >= 10){
                     values.add(numVal - 9);
                 }
 
