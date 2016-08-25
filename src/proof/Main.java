@@ -35,7 +35,7 @@ public class Main {
     
     public static ArrayList<Match> performCalculations(ArrayList<Integer> letters, ArrayList<Integer> fibSeq) {
         ArrayList<Match> existingMatches = new ArrayList<>();
-        int numOfLettersFibsMadeOf = 5;
+        int numOfLettersFibsMadeOf = 4;
         while(numOfLettersFibsMadeOf > 0){
             for (int i = 0; i < letters.size(); i+=numOfLettersFibsMadeOf) {
                 String strNum = "";
@@ -87,11 +87,13 @@ public class Main {
                                 numsInSeq.add(num);
                                 if(numsInSeq.size() >= 3){ //only three in a row or above count as a match
                                     //ding ding ding
+                                    ArrayList<Match> matchesToBeOverWritten = new ArrayList<>();
                                     for (Match match : existingMatches) {
                                         if(match.getStartIndex() == i){
-                                            existingMatches.remove(match);
+                                            matchesToBeOverWritten.add(match);
                                         }
                                     }
+                                    existingMatches.removeAll(matchesToBeOverWritten);
                                     existingMatches.add(new Match(numOfLettersFibsMadeOf, numsInSeq.size(), i, null)); //TODO: provide actual magical letters
                                 }
                             }
@@ -116,7 +118,8 @@ public class Main {
     
 
     public static ArrayList<Integer> convertTextFileIntoNumericValues() {
-        File file = new File("C:\\Users\\Bancho\\Documents\\hello.txt");
+//        File file = new File("C:\\Users\\Bancho\\Documents\\NetBeansProjects\\Proof\\books\\bible.txt");
+        File file = new File("C:\\Users\\Bancho\\Documents\\NetBeansProjects\\Proof\\books\\my_path_to_atheism.txt");
         FileInputStream fis = null;
         ArrayList<Integer> values = new ArrayList();
 
